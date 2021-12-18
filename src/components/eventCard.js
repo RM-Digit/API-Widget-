@@ -2,8 +2,7 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Item from "./CardItem";
 import Typography from "@mui/material/Typography";
-export default function eventCard({ event }) {
-  console.log(event);
+export default function eventCard({ event, leagues }) {
   return (
     <Grid container spacing="6">
       <Grid
@@ -16,7 +15,7 @@ export default function eventCard({ event }) {
         p={1}
       >
         <Typography gutterBottom variant="subtitle1" component="div">
-          Standard license
+          {leagues[event[0].LeagueId]}
         </Typography>
       </Grid>
 

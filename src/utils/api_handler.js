@@ -1,7 +1,7 @@
 import $ from "./http";
 
 const getLeagues = () => {
-  return $.get("/api/Schedule");
+  return $.get(`/all`);
 };
 
 const getGameById = (id) => {

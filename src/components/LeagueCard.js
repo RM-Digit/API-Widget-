@@ -11,17 +11,16 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function LeagueCard({ league }) {
-  return (
-    <Grid item xs={12}>
-      {league.map(
-        (event, index) =>
-          event.length && (
-            <Item key={index}>
-              <EventCard event={event} />
-            </Item>
-          )
-      )}
-    </Grid>
+export default function LeagueCard({ league, leagues }) {
+  console.log("eee", league);
+  return league.map(
+    (event, index) =>
+      event.length && (
+        <Grid item xs={12}>
+          <Item key={index}>
+            <EventCard event={event} leagues={leagues} />
+          </Item>
+        </Grid>
+      )
   );
 }

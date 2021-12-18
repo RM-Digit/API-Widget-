@@ -8,6 +8,7 @@ export default function index() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route index element={<Home />} />
       </Routes>
     </>
   );
