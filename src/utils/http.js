@@ -1,5 +1,8 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8081"
+      : "https://shrouded-tor-76484.herokuapp.com",
 });

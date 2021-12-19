@@ -9,7 +9,7 @@ import { applyMiddleware, createStore } from "redux";
 import rootReducer from "./_reducers";
 import thunk from "redux-thunk";
 import promiseMiddleware from "redux-promise";
-
+import CssBaseline from "@mui/material/CssBaseline";
 const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
   thunk
@@ -20,6 +20,7 @@ const store = createStoreWithMiddleware(
 );
 ReactDOM.render(
   <Provider store={store}>
+    <CssBaseline />
     <App />
   </Provider>,
   document.getElementById("dw-widget-container")

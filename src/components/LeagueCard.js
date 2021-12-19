@@ -12,7 +12,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function LeagueCard({ league, leagues }) {
-  console.log("eee", league);
   return league.map(
     (event, index) =>
       event.length && (
