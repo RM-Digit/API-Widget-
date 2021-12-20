@@ -14,14 +14,19 @@ export default function eventCard({ event, leagues }) {
         }}
         p={1}
       >
-        <Typography gutterBottom variant="subtitle1" component="div">
+        <Typography
+          gutterBottom
+          variant="subtitle1"
+          component="div"
+          fontWeight={600}
+        >
           {leagues[event[0].LeagueId]}
         </Typography>
       </Grid>
 
       {event.map((e, i) => (
         <Grid item xs={12} key={i}>
-          <Item item={e} />
+          <Item item={e} index={i} />
         </Grid>
       ))}
     </Grid>

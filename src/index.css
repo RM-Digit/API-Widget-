@@ -13,7 +13,53 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+#dw-widget-container ul {
+  padding: 8px 0;
+}
+#dw-widget-container * {
+  /* font-size: 1.4rem; */
+  color: #3a3a3ae3;
+}
+#dw-widget-container svg {
+  font-size: 20px;
+}
 #dw-widget-container {
   min-width: 80%;
+}
+span.odds-table > span:not(:last-child) {
+  width: 50px;
+  display: inline-block;
+  text-align: center;
+  background: #f4f4f4;
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 1;
+  position: relative;
+  box-shadow: inset 0 0 0 1px #d4d4d5;
+  padding: 5px 5px;
+  margin: 0 2px;
+  font-size: 10px;
+}
+span.odds-table > span:last-child {
+  width: 50px;
+  display: inline-block;
+  text-align: center;
+  padding: 5px 5px;
+  margin: 0 2px;
+  font-size: 12px;
+}
+span.odds-table-header > span {
+  width: 50px;
+  display: inline-block;
+  text-align: center;
+  padding: 5px 5px;
+  margin: 0 2px;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 420px) {
+  span.odds-table > span:last-child,
+  span.odds-table-header > span:last-child {
+    display: none;
+  }
 }

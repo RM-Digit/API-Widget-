@@ -12,14 +12,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function LeagueCard({ league, leagues }) {
-  return league.map(
-    (event, index) =>
-      event.length && (
-        <Grid item xs={12}>
-          <Item key={index}>
-            <EventCard event={event} leagues={leagues} />
-          </Item>
-        </Grid>
-      )
-  );
+  return league.map((event, index) => (
+    <Grid item xs={12} key={index}>
+      <Item>
+        <EventCard event={event} leagues={leagues} />
+      </Item>
+    </Grid>
+  ));
 }

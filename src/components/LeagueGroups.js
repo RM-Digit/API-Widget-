@@ -23,6 +23,7 @@ export default function Sidebar({ contents, leaguesByGroup }) {
         break;
 
       case "league":
+        setSelectedIndex(1);
         const head = contents[groupId];
         const groups = leaguesByGroup[groupId];
         setRows(Object.assign({ 0: head }, groups));
@@ -31,14 +32,19 @@ export default function Sidebar({ contents, leaguesByGroup }) {
       default:
         break;
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contents, groupId, view]);
 
   const handleClick = (e, gId, index) => {
     setSelectedIndex(index);
     setSelectedGroupId(gId);
-    view === "home" && dispatch(switch_sidebar({ mode: "league", id: gId }));
-    view === "league" && dispatch(switch_sidebar({ mode: "events", id: gId }));
-    view === "events" && dispatch(switch_sidebar({ mode: "events", id: gId }));
+
+    if (view === "home") {
+      const defaultLeague = Object.keys(leaguesByGroup[gId])[0];
+      dispatch(switch_sidebar({ mode: "league", id: defaultLeague }));
+    } else {
+      dispatch(switch_sidebar({ mode: "events", id: gId }));
+    }
   };
 
   const backTo = () => {
@@ -60,8 +66,11 @@ export default function Sidebar({ contents, leaguesByGroup }) {
           }}
         >
           {view !== "home" && !index && (
-            <ListItemIcon style={{ cursor: "pointer" }} onClick={backTo}>
-              <KeyboardBackspaceIcon />
+            <ListItemIcon
+              style={{ cursor: "pointer", justifyContent: "center" }}
+              onClick={backTo}
+            >
+              <KeyboardBackspaceIcon sx={{ fontSize: "1.5rem" }} />
             </ListItemIcon>
           )}
 

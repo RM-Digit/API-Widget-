@@ -1,7 +1,7 @@
 export function isToday(inputDate) {
   const today = new Date();
   inputDate = new Date(inputDate);
-  return inputDate.setHours(0, 0, 0, 0) == today.setHours(0, 0, 0, 0);
+  return inputDate.setHours(0, 0, 0, 0) === today.setHours(0, 0, 0, 0);
 }
 
 export function isComing(inputDate) {
@@ -11,5 +11,6 @@ export function isComing(inputDate) {
 }
 
 export function filterByObj(array, val, key) {
+  /* eslint eqeqeq: 0 */
   return array.filter((innerArray) => innerArray[0][key] == val);
 }
