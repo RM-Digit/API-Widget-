@@ -9,17 +9,12 @@ export default function eventCard({ event, leagues }) {
         item
         xs={12}
         style={{
-          borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-          textAlign: "left",
+          // borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+          textAlign: "center",
         }}
         p={1}
       >
-        <Typography
-          gutterBottom
-          variant="subtitle1"
-          component="div"
-          fontWeight={600}
-        >
+        <Typography gutterBottom variant="h3" component="div" fontWeight={600}>
           {leagues[event[0].LeagueId]}
         </Typography>
       </Grid>

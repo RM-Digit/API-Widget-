@@ -19,7 +19,7 @@ export default function Sidebar({ contents, leaguesByGroup }) {
   useEffect(() => {
     switch (view) {
       case "home":
-        setRows(Object.assign({ 0: "Sports" }, contents));
+        setRows(Object.assign({ 0: "LEAGUE GROUPS" }, contents));
         break;
 
       case "league":

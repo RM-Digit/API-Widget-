@@ -14,3 +14,11 @@ export function filterByObj(array, val, key) {
   /* eslint eqeqeq: 0 */
   return array.filter((innerArray) => innerArray[0][key] == val);
 }
+
+export function isValid(game) {
+  return (
+    isComing(game.GameDateTime) &&
+    game.GameStatus === "Open" &&
+    game.Format === "Game"
+  );
+}

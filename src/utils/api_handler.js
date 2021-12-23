@@ -1,7 +1,7 @@
 import $ from "./http";
 
-const getLeagues = () => {
-  return $.get(`/all`);
+const getLeagues = (force_read) => {
+  return $.get(`/all?force_read=${force_read}`);
 };
 
 const getGameById = (id) => {
