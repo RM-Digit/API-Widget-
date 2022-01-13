@@ -60,7 +60,7 @@ export default function AcccessibleTable({ item, index, style }) {
       ),
     ];
     setRows(temp);
-    if (odds.length > 0) {
+    if (odds && odds.length > 0) {
       const visitor = item.VisitorTeam.TeamName;
       const home = item.HomeTeam.TeamName;
       const vShow = odds.find(x => x.name === visitor).show;
