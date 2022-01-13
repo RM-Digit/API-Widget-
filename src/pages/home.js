@@ -1,21 +1,21 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Leagues from "../components/LeagueGroups";
-import LeagueCardList from "../components/LeagueCardList";
-import { useState, useEffect } from "react";
-import { api } from "../utils/api_handler";
-import { filterByObj, isValid } from "../utils/common";
-import { useSelector } from "react-redux";
-import Loading from "../components/skeleton";
-import ls from "local-storage";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Leagues from '../components/LeagueGroups';
+import LeagueCardList from '../components/LeagueCardList';
+import { useState, useEffect } from 'react';
+import { api } from '../utils/api_handler';
+import { filterByObj, isValid } from '../utils/common';
+import { useSelector } from 'react-redux';
+import Loading from '../components/skeleton';
+import ls from 'local-storage';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: 0,
-  textAlign: "center",
+  textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
 
@@ -27,24 +27,19 @@ export default function Home() {
   const [allEvents, setAllEvents] = useState([]);
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const view = useSelector((state) => state.ui.view.mode);
-  const id = useSelector((state) => state.ui.view.id);
+  const view = useSelector(state => state.ui.view.mode);
+  const id = useSelector(state => state.ui.view.id);
 
-  useEffect(() => {
-    setInterval(apiInit, 10000);
-  }, []);
   useEffect(() => {
     apiInit();
   }, []);
 
   useEffect(() => {
-    if (view !== "home") {
-      setEventLeagues(
-        allEvents.map((league) => filterByObj(league, id, "LeagueId"))
-      );
+    if (view !== 'home') {
+      setEventLeagues(allEvents.map(league => filterByObj(league, id, 'LeagueId')));
     } else {
       setLoading(true);
-      if (id !== "") {
+      if (id !== '') {
         setEventLeagues(allEvents);
         setLoading(false);
       } else {
@@ -52,10 +47,10 @@ export default function Home() {
           allLeagues = {},
           leaguesByGroup = {},
           allEventLeagues = [];
-        apiData &&
-          apiData.forEach((leagueGroup) => {
-            leagueGroup.Leagues.map((league) => {
-              league.Games.forEach((game) => {
+        apiData.length > 0 &&
+          apiData.forEach(leagueGroup => {
+            leagueGroup.Leagues.map(league => {
+              league.Games.forEach(game => {
                 if (isValid(game)) {
                   allLeagueGroups = {
                     ...allLeagueGroups,
@@ -79,9 +74,7 @@ export default function Home() {
               return 0;
             });
 
-            const filtered_leagues = leagueGroup.Leagues.map((league) =>
-              league.Games.filter((game) => isValid(game))
-            ).filter((game) => game.length > 0);
+            const filtered_leagues = leagueGroup.Leagues.map(league => league.Games.filter(game => isValid(game))).filter(game => game.length > 0);
             allEventLeagues.push(filtered_leagues);
           });
         setLeaguesByGroup(leaguesByGroup);
@@ -96,14 +89,18 @@ export default function Home() {
   }, [id, view, apiData]);
 
   async function apiInit() {
-    const lsData = ls("dwAPIData");
+    // console.log('res');
+    // const res = await api.getLeagues(1);
+    // console.log('res', res.data);
+    // setApiData(res.data);
+    const lsData = ls('dwAPIData');
     const force_read = lsData ? 0 : 1;
-
     const res = await api.getLeagues(force_read);
+    setApiData(res.data);
     if (!res.data.read_ls) {
-      const data = ls("dwAPIData", res.data);
+      const data = ls('dwAPIData', res.data);
     } else {
-      const ls_data = ls("dwAPIData");
+      const ls_data = ls('dwAPIData');
       setApiData(ls_data);
     }
   }
